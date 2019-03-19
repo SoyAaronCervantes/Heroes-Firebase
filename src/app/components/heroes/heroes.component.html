@@ -1,0 +1,43 @@
+<ng-container *ngIf="loading === true; then isLoading; else loaded"></ng-container>
+<ng-template #isLoading>
+  <app-spinner></app-spinner>
+</ng-template>
+<ng-template #loaded>
+  <h1 class="text-center">Lista de Heroes</h1>
+  <div class="row">
+    <div class="col-12 text-center text-md-right">
+      <button [routerLink]="['/heroe', 'nuevo']" class="btn btn-outline-info mr-2" type="button">
+        Nuevo Héroe
+      </button>
+    </div>
+  </div>
+  <hr>
+  <div class="row animated fadeIn fast">
+    <div class="col-12">
+      <table class="table table-striped text-center">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Casa</th>
+          <th scope="col">Opciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let key of heroes | keys; let i = index">
+          <td>{{ i + 1}}</td>
+          <td>{{ heroes[key].nombre }}</td>
+          <td>{{ heroes[key].casa }}</td>
+          <td>
+            <button type="button" [routerLink]="['/heroe', key]" class="btn btn-outline-warning text-dark mr-2">Editar</button>
+            <button type="button" (click)="removeHeroe(key, i)" class="btn btn-outline-danger text-dark">Borrar</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="alert alert-info" role="alert" *ngIf="(heroes | keys).length === 0 && loading === false">
+        No hay registros que mostrar
+      </div>
+    </div>
+  </div>
+</ng-template>

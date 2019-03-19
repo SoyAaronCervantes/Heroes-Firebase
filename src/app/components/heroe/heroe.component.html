@@ -1,0 +1,46 @@
+<ng-container *ngIf="loading === true; then isLoading; else loaded"></ng-container>
+<ng-template #isLoading>
+  <app-spinner></app-spinner>
+</ng-template>
+<ng-template #loaded>
+  <ng-container *ngIf="id === 'nuevo'; then newHeroe; else updateHeroe"></ng-container>
+  <ng-template #newHeroe>
+    <h3 class="text-center">Héroe nuevo</h3>
+  </ng-template>
+  <ng-template #updateHeroe>
+    <h3 class="text-center">Héroe: <strong>{{ heroe.nombre }}</strong></h3>
+  </ng-template>
+  <div class="row text-center">
+    <div class="col-12">
+      <button class="btn btn-outline-danger" [routerLink]="['/heroes']">Regresar</button>
+      <button class="btn btn-outline-dark ml-3" (click)="resetForm(forma)">Nuevo héroe</button>
+    </div>
+  </div>
+  <hr>
+  <div class="row animated fadeIn fast">
+    <div class="col-12">
+      <form (ngSubmit)="saveData()" #forma="ngForm">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" [(ngModel)]="heroe.nombre" name="nombre" class="form-control" placeholder="Nombre del héroe" required>
+        </div>
+        <div class="form-group">
+          <label>Casa</label>
+          <select [(ngModel)]="heroe.casa"  name="casa" class="form-control">
+            <option value="Marvel">Marvel</option>
+            <option value="DC">DC</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Bio</label>
+          <textarea type="text" [(ngModel)]="heroe.bio" name="bio" class="form-control" placeholder="Biografía del héroe"></textarea>
+        </div>
+        <div class="form-group text-center">
+          <button type="submit" class="btn btn-outline-success" [disabled]="forma.invalid">
+            Guardar Cambios
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
