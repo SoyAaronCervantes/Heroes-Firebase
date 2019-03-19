@@ -1,11 +1,11 @@
 import {RouterModule, Routes} from '@angular/router';
-import {HeroesComponent} from './components/heroes/heroes.component';
-import {HeroeComponent} from './components/heroe/heroe.component';
+import {HeroesComponent} from './pages/heroes/component/heroes.component';
+import {HeroeComponent} from './pages/heroe/component/heroe.component';
 
 const AppRoutes: Routes = [
-  { path: 'heroes', component: HeroesComponent  },
-  { path: 'heroe/:id', component: HeroeComponent },
-  { path: '**', pathMatch: 'full', redirectTo: 'heroes' }
+  { path: 'heroes', loadChildren: './pages/heroes/heroes.module#HeroesModule'  },
+  { path: 'heroe/:id', loadChildren: './pages/heroe/heroe.module#HeroeModule' },
+  { path: '**', pathMatch: 'full', redirectTo: '/heroes' }
 ];
 
 export const AppRouting = RouterModule.forRoot(AppRoutes);
