@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {Heroe} from '../interfaces/heroe.interface';
+import {Heroe} from '../../interfaces/heroe.interface';
 
 @Pipe({
   name: 'keys',

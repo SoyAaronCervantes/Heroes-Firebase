@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Heroe} from '../../interfaces/heroe.interface';
-import {HeroesService} from '../../services/heroes.service';
+import {Heroe} from '../../../interfaces/heroe.interface';
+import {HeroesService} from '../../../services/heroes.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 
